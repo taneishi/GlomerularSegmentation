@@ -8,7 +8,7 @@ The *glomerulus* is one of biological substructures in a kidney, which physiolog
 
 ![microscopic_image](figure/microscopic_image.png)
 
-**Figure 1. An example of the overall view of the kidney tissue image used as the source for the analysis. These images are high resolution for diagnostic purposes and in the case of this image is provided in TIFF format with (18,484, 13,013) pixels.**
+**Figure 1. An example of the overall view of the kidney tissue image used as the source for the analysis. These images are high resolution for diagnostic purposes, for example, this image is provided in TIFF format with (18,484, 13,013) pixels.**
 
 The pathologist observes the conditions of the glomeruli in the biopsy kidney tissue image obtained to diagnose kidney disease. The motivation is to perform the entire diagnostic process by computational methods, but as a preliminary step, we segment the kidney tissue images and construct a model to recognize the glomeruli.
 
@@ -16,7 +16,7 @@ The pathologist observes the conditions of the glomeruli in the biopsy kidney ti
 
 The dataset is based on kidney tissue images provided by *The Human BioMolecular Atlas Program*, HuBMAP, and the corresponding annotations indicating glomerular segmentation[^HuBMAP]. The kidney tissue images in the HuBMAP dataset consisted of 20 biopsies, 11 of which were fixed by *fresh frozen* and 9 of which by *formalin fixed paraffin embedded*, and then stained with *periodic acid-Schiff*, PAS. Of these biopsies, i.e., kidney tissue images, 8 were used for training, 5 for validation, and the remaining 7 were unused for testing.
 
-The annotations indicating the segmentation of the glomeruli is provided as a binary image in which each pixel of the corresponding kidney tissue image is replaced by a classification label with 1 for the pixels in the glomerulus and 0 for the other pixels. This binary image is referred to as the *mask*.
+The annotations indicating the segmentation of the glomeruli is provided as a binary image in which each pixel of the corresponding kidney tissue image is replaced by a classification label with 1 for the pixels in the glomerulus and 0 for the other pixels. This binary image is referred to as a *mask*.
 
 For these kidney tissue images and masks, in order to keep the input to a model at a fixed size, we generated a 256 pixel square patch from the original image and a corresponding mask of the same size to serve as the dataset for training and validation. In total, 7,665 patches and masks were created from 8 samples for training and 1,916 from 5 samples for validation, respectively. An example of the correspondence between a patch and its mask is shown in Figure 2.
 
@@ -27,7 +27,7 @@ For these kidney tissue images and masks, in order to keep the input to a model 
 
 ## Segmentation
 
-We used *U-Net* as the model, which is a typical segmention model in *deep learning*, DL[^Ronneberger]. U-Net is a model based on the *convolutional neural network*, CNN, and is capable of segmenting images according to their semantic connections.
+We use *U-Net* as a model, which is a typical segmentation model in *deep learning*, DL[^Ronneberger]. U-Net is a model based on the *convolutional neural network*, CNN, and is capable of segmenting an image according to its semantic connections.
 
 The architecture of U-Net consists of two pathes: *encoder* and *decoder*. The encoder is the contracting path of capturing the semantic connections in the image while downsampling, and is implemented by the conventional convolution and *max pooling* layers. The decoder is a symmetric expanding path that combines semantic connections from image features to location information while upsampling, and is implemented by an end-to-end *full convolutional network*, FCN. For training and validation of U-Net, we used an implementation in a DL package in Python, `PyTorch`[^Usuyama].
 
@@ -41,12 +41,12 @@ Assuming that the model generates a binary prediction mask similar to the mask f
 
 Dice coefficient takes values between 0 and 1, and is 1 if and only if $X$ and $Y$ are perfectly matched. Dice coefficient is calculated for all patches and masks in the validation set and averaged to obtain the accuracy to be evaluated.
 
-As a result, we obtained Dice coefficients of 0.880 for training and 0.794 for validation. Examples of the output predicted mask from U-Net, and the true mask corresponding to the input patch are shown in Figure 3.
+As a result, we obtained Dice coefficients of 0.880 for training and 0.794 for validation. An example of the output predicted mask from U-Net, and the true mask corresponding to the input patch are shown in Figure 3.
 
 ![predicted_mask](figure/predicted.png)
 ![true_mask](figure/mask.png)
 
-**Figure 3. Examples of the patch as input to U-Net, the output predicted mask, and the true mask corresponding to the input patch.**
+**Figure 3. An example of the output predicted mask from U-Net, and the true mask corresponding to the input patch.**
 
 ## Furthermore
 
