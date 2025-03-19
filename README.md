@@ -29,7 +29,7 @@ For these kidney tissue images and masks, in order to keep the input to a model 
 
 We use *U-Net* as a model, which is a typical segmentation model in *deep learning*, DL[^Ronneberger]. U-Net is a model based on the *convolutional neural network*, CNN, and is capable of segmenting an image according to its semantic connections.
 
-The architecture of U-Net consists of two pathes: *encoder* and *decoder*. The encoder is the contracting path of capturing the semantic connections in the image while downsampling, and is implemented by the conventional convolution and *max pooling* layers. The decoder is a symmetric expanding path that combines semantic connections from image features to location information while upsampling, and is implemented by an end-to-end *full convolutional network*, FCN. For training and validation of U-Net, we used an implementation in a DL package in Python, `PyTorch`[^Usuyama].
+The architecture of U-Net consists of two pathes: *encoder* and *decoder*. The encoder is the contracting path of capturing the semantic connections in the image while downsampling, and is implemented by the conventional convolution and *max pooling* layers. The decoder is a symmetric expanding path that combines semantic connections from image features to location information while upsampling, and is implemented by an end-to-end *full convolutional network*, FCN. For training and validation of U-Net, we used an implementation in a DL package in Python, `PyTorch`.
 
 ## Evaluation
 
@@ -55,4 +55,3 @@ The application of U-Net has shown the potential for glomerular segmentation. To
 [^HuBMAP]: HuBMAP Consortium, *The human body at cellular resolution: the NIH Human Biomolecular Atlas Program*, **Nature**, 574, 187–192, 2019.
 [^Dice]: L.R. Dice, *Measures of the Amount of Ecologic Association Between Species*, **Ecology**, 26, 3, 297–302, 1945.
 [^Ronneberger]: O. Ronneberger et al., *U-Net: Convolutional Networks for Biomedical Image Segmentation*, **arXiv**, 2015.
-[^Usuyama]: N. Usuyama, *Simple PyTorch Implementations of U-Net/FullyConvNet for Image Segmentation*, [**GitHub**](https://github.com/usuyama/pytorch-unet).
