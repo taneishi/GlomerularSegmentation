@@ -26,6 +26,8 @@ def main(args):
         # Load model weights.
         net.load_state_dict(torch.load(args.model_path, map_location=device))
 
+    os.makedirs(args.figure_path, exist_ok=True)
+
     net.eval()
     for index, (images, masks) in enumerate(test_loader, 1):
         images = images.to(device)
@@ -59,6 +61,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     print(vars(args))
     
-    os.makedirs(args.figure_path, exist_ok=True)
-
     main(args)
