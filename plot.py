@@ -60,5 +60,5 @@ if __name__ == '__main__':
     parser.add_argument('--figure_path', default='figure', type=str)
     args = parser.parse_args()
     print(vars(args))
-    
+
     main(args)
